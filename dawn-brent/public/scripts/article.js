@@ -59,7 +59,16 @@ var app = app || {};
   };
 
   module.Article.numWordsByAuthor = () => {
-    return module.Article.allAuthors().map(author => {})
+    return module.Article.allAuthors().map(author => {
+      let authorData = {
+        name: author,
+        words: module.Article.all.filter(x => x.author===author).map(articleThing => articleThing.body.split(" ")).reduce((wordCount, wordList) => {
+          return wordCount += wordList.length;
+        }, 0)
+      }
+      return authorData;
+
+    })
   };
 
   module.Article.truncateTable = callback => {
