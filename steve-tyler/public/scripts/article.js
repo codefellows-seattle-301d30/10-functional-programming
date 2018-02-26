@@ -36,16 +36,18 @@ var app = app || {};
   };
 
   Article.numWordsAll = () => {
-    return Article.all.map().reduce()
+    return Article.all.map(article => article.body.split(' ').length ).reduce((accumulator, currentValue) => accumulator + currentValue);
   };
+  console.log(Article.numWordsAll);
 
-  Article.allAuthors = () => {
-    return Article.all.map().reduce();
-  };
+  // Article.allAuthors = () => {
+  //   return Article.all.map(article => article.author).filter(author => )
+  //   })
+  // };
 
-  Article.numWordsByAuthor = () => {
-    return Article.allAuthors().map(author => {})
-  };
+  // Article.numWordsByAuthor = () => {
+  //   return Article.allAuthors().map(author => {Article.all.map(if(article.author === author)})
+  // };
 
   Article.truncateTable = callback => {
     $.ajax({
