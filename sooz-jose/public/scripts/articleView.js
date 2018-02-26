@@ -3,7 +3,15 @@ var app = app || {};
 
 var articleView = {};
 
-articleView.populateFilters = () => {
+(function (module){
+  let jeremy = 'Jeremy has no dog';
+  let kevin = 'Apollo';
+  // console.log(jeremy,kevin);
+  
+  module.jeremy = jeremy;
+})(app);
+
+(articleView.populateFilters (module){
   $('article').each(function() {
     if (!$(this).hasClass('template')) {
       var val = $(this).find('address a').text();
@@ -18,8 +26,9 @@ articleView.populateFilters = () => {
         $('#category-filter').append(optionTag);
       }
     }
+    module.$('article').each 
   });
-};
+}(app);
 
 articleView.handleAuthorFilter = () => {
   $('#author-filter').on('change', function() {
@@ -73,6 +82,7 @@ articleView.setTeasers = () => {
   });
 };
 
+//TODO: Review wthis functionality.
 articleView.initNewArticlePage = () => {
   $('.tab-content').show();
   $('#export-field').hide();
@@ -84,6 +94,7 @@ articleView.initNewArticlePage = () => {
   $('#new-form').on('submit', articleView.submit);
 };
 
+//TODO: Review wthis functionality.
 articleView.create = () => {
   var article;
   $('#articles').empty();
@@ -101,6 +112,7 @@ articleView.create = () => {
   $('pre code').each((i, block) => hljs.highlightBlock(block));
 };
 
+//TODO: Review wthis functionality.
 articleView.submit = event => {
   event.preventDefault();
   let article = new Article({
@@ -118,8 +130,9 @@ articleView.submit = event => {
   window.location = '../';
 }
 
+//TODO: Review wthis functionality. TESTING CHANGE FOREACH TO MAP FOR FIRST INTERNAL METHOD LISTED.
 articleView.initIndexPage = () => {
-  app.Article.all.forEach(a => $('#articles').append(a.toHtml()));
+  app.Article.all.map(a => $('#articles').append(a.toHtml()));
 
   articleView.populateFilters();
   articleView.handleCategoryFilter();
@@ -129,8 +142,10 @@ articleView.initIndexPage = () => {
   $('pre code').each((i, block) => hljs.highlightBlock(block));
 };
 
+//DONE: Review wthis functionality.
 articleView.initAdminPage = () => {
-  
+  var template = Handlebars.compile($('#author-stats').text());
+
   // REVIEW: We use .forEach() here because we are relying on the side-effects of the callback function: appending to the DOM. The callback is not required to return anything.
   app.Article.numWordsByAuthor().forEach(stat => $('.author-stats').append(template(stat)));
 

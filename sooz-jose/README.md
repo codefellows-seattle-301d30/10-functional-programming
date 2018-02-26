@@ -45,7 +45,9 @@ We used IcoMoon icon font for navigation icons. We included the jQuery, Handleba
 02-26-2018
 9:15 Commit new file structure and README
 
+9:36 Commit full, updated file structure with all packages
 
+10:45 Updated admin page with handlebars tempalte, updated admin view script function call, working on refactoring all article and articleView.js files into IIFE statements using the modular patttern
 
 ## Credits and Collaborations
 * Thanks to our instructors and TAs and our classmates, with special thanks to Nick.
@@ -56,5 +58,5 @@ We used IcoMoon icon font for navigation icons. We included the jQuery, Handleba
 * We used Node documentation: https://nodejs.org/en/
 * We referenced the SQL Language cheat sheet througout our work that was provided by our instructor, as well as the SQL query demo she shared from the day before. 
 * For help remembering COUNT command structure in SQL: https://www.brentozar.com/archive/2014/02/count-number-rows-table-sql-server/
-* Special thanks to Beverly for helping me trouble shoot my .put function in my controler and catching missing quotes around authorUrl. 
+
     

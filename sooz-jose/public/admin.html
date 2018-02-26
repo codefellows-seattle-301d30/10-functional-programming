@@ -10,10 +10,14 @@
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/modules.css">
     <link rel="icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/18607604?v=3&s=200">
+    <!-- TODO: UPDATE/REVIEW TEMPLATE SO IT HELPS TO POPULATE THE PAGE -->
+    <script id="author-stats" type="text/x-handlebars-template">
+      <li><strong>{{author}}</strong>: {{author-stats}} words written</li>
+    </script>
   </head>
   <body>
     <header class="site-header clearfix">
-      <section class="heading-group-h1 pull-left">
+      <section class="heading-group-h1 pull-left"></section>
         <h1>
           Kilovolt Blog!
         </h1>
@@ -30,9 +34,11 @@
     </header>
     <main class="clearfix">
       <h1>Blog Stats</h1>
+      <!-- TODO:  CHECK HOW TO BEST GENERATE THESE STATS -->
       <section id="blog-stats">
         <dt>Total articles:</dt> <dd class="articles"></dd>
         <dt>Total words:</dt> <dd class="words"></dd>
+        <!-- DONE: USE HANDLEBAR TEMPLATES, JQUERY & SQL TO GENERATE/CALCULATE STATS BELOW -->
         <h2>Author Stats</h2>
         <p><em>Details on who is writing, and how much writing they are doing...</em></p>
         <ul class="author-stats">
@@ -48,7 +54,8 @@
     <script src="scripts/article.js"></script>
     <script src="scripts/articleView.js"></script>
     <script>
-      Article.fetchAll();
+      //DONE: CHECK functionality and add Callback
+      Article.fetchAll(articleView.initAdminPage);
     </script>
   </body>
 </html>

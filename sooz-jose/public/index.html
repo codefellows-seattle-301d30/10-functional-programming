@@ -12,19 +12,7 @@
     <link rel="stylesheet" href="vendor/styles/railscasts.css">
     <link rel="icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/18607604?v=3&s=200">
 
-    <script id="article-template" type="text/x-handlebars-template">
-      <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
-        <header>
-          <h1>{{title}}</h1>
-          <div class="byline">
-            By <address><a href="{{authorUrl}}">{{author}}</a></address>
-            {{publishStatus}}
-          </div>
-        </header>
-        <section class="article-body">{{{body}}}</section>
-        <a href="#" class="read-on">Read on &rarr;</a>
-      </article>
-    </script>
+
   </head>
   <body>
     <header class="site-header clearfix">
@@ -86,6 +74,7 @@
     <script src="scripts/article.js"></script>
     <script src="scripts/articleView.js"></script>
     <script>
+      //TODO: Update/review this method and it's callback
       Article.fetchAll(articleView.initIndexPage);
     </script>
   </body>

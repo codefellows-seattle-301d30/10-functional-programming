@@ -34,7 +34,7 @@ Article.fetchAll = callback => {
       callback();
     })
 };
-
+// TODO: REVIEW ALL .MAP and .REDUCE functionality
 Article.numWordsAll = () => {
   return Article.all.map().reduce()
 };
