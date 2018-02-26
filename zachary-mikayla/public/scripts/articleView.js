@@ -1,6 +1,8 @@
 'use strict';
 var app = app || {};
 
+(function(module) {
+
 var articleView = {};
 
 articleView.populateFilters = () => {
@@ -20,6 +22,7 @@ articleView.populateFilters = () => {
     }
   });
 };
+
 
 articleView.handleAuthorFilter = () => {
   $('#author-filter').on('change', function() {
@@ -138,3 +141,4 @@ articleView.initAdminPage = () => {
   $('#blog-stats .articles').text(app.Article.all.length);
   $('#blog-stats .words').text(app.Article.numWordsAll());
 };
+})
