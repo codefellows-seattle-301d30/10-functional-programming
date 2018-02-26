@@ -39,15 +39,29 @@ var app = app || {};
   };
 
   Article.numWordsAll = () => {
-    return Article.all.map().reduce()
+    return Article.all.map(x => x.body).reduce((accumulator, currentValue) => {
+      return accumulator + currentValue.split(' ').length;
+    }, 0);
   };
 
   Article.allAuthors = () => {
-    return Article.all.map().reduce();
+    return Article.all.map(x => x.author).reduce((accumulator, currentValue) => {
+      if(!accumulator.includes(currentValue)) {
+        accumulator.push(currentValue);
+      }
+      return accumulator;
+    }, []);
   };
 
   Article.numWordsByAuthor = () => {
-    return Article.allAuthors().map(author => {})
+    return Article.allAuthors().map(author => ({
+      author: author,
+      wordcount: Article.all.filter(x => x.author === author)
+        .map(x => x.body)
+        .reduce((accumulator, currentValue) => {
+          return accumulator + currentValue.split(' ').length;
+        }, 0)
+    }));
   };
 
   Article.truncateTable = callback => {
