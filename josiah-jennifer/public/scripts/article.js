@@ -26,7 +26,7 @@ var app = app || {};
   // };
 
   Article.loadAll = articleData => {
-    articleData.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)))
+    articleData.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
     articleData.map(articleObject => Article.all.push(new Article(articleObject)));
   };
 
@@ -39,9 +39,18 @@ var app = app || {};
   };
 
   Article.numWordsAll = () => {
-    return Article.all.map().reduce()
+    return Article.all.map(currentArticle => {
+      let wordcount = 0;
+      let string = currentArticle.body;
+      for(let i in string){
+        if (string[i] === ' ') wordcount++ ;
+      }
+      return wordcount;
+    }
+    ).reduce(function(accumulator, currentValue) {
+      return accumulator += currentValue;
+    },0)
   };
-
   Article.allAuthors = () => {
     return Article.all.map().reduce();
   };
