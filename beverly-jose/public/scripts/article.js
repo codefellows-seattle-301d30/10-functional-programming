@@ -42,8 +42,16 @@ var app = app || {};
   };
 
   Article.allAuthors = () => {
-    return Article.all.map().reduce();
-  };
+    let arrayTest = [];
+    let authors = Article.all.map(x => x.author);
+    for (let i in authors) {
+      if (!arrayTest.includes(authors[i])) {
+        arrayTest.push(authors[i]);
+      }
+    }
+    return arrayTest;
+  }
+
 
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {})
