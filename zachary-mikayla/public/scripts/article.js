@@ -21,10 +21,8 @@ var app = app || {};
   Article.loadAll = articleData => {
     articleData.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)))
 
-    /* OLD forEach():
-    articleData.forEach(articleObject => Article.all.push(new Article(articleObject)));
-    */
-
+    Article.all = articleData.map(articleObject => new Article(articleObject));
+   
   };
 
   Article.fetchAll = callback => {
@@ -36,11 +34,23 @@ var app = app || {};
   };
 
   Article.numWordsAll = () => {
-    return Article.all.map().reduce()
+    return Article.all.map(x => x.body.split(' ').length)
+      .reduce((accumulator, currentValue) =>
+        accumulator + currentValue
+      );
   };
 
   Article.allAuthors = () => {
-    return Article.all.map().reduce();
+    return Article.all.map(x => x.author)
+      .reduce( function (a,b){
+        if(a.indexOf(b.name) === -1) {
+          a.push(b.name)
+        }
+        return a;
+      }
+    ),[];
+
+    //if does not exists push else nothing
   };
 
   Article.numWordsByAuthor = () => {
