@@ -27,7 +27,8 @@ var app = app || {};
 
   module.Article.loadAll = articleData => {
     articleData.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
-    articleData.map(articleObject => module.Article.all.push(new module.Article(articleObject)));
+    // articleData.map(articleObject => module.Article.all.push(new module.Article(articleObject)));
+    module.Article.all = articleData.map(articleObject => new module.Article(articleObject));
     /* OLD forEach():
     articleData.forEach(articleObject => module.Article.all.push(new Article(articleObject)));
     */
@@ -43,11 +44,18 @@ var app = app || {};
   };
 
   module.Article.numWordsAll = () => {
-    return module.Article.all.map().reduce()
+    return module.Article.all.map(articleThing => articleThing.body.split(" ")).reduce((wordCount, wordList) => {
+      return wordCount += wordList.length;
+    }, 0)
   };
 
   module.Article.allAuthors = () => {
-    return module.Article.all.map().reduce();
+    return module.Article.all.map(art => art.author).reduce((authorList, author) => {
+      if(!authorList.includes(author)){
+        authorList.push(author);
+      }
+      return authorList;
+    },[]);
   };
 
   module.Article.numWordsByAuthor = () => {
