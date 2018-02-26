@@ -2,7 +2,7 @@
 var app = app || {};
 
 (module => {
-  
+
   function Article(rawDataObj) {
   // REVIEW: In Lab 8, we explored a lot of new functionality going on here. Let's re-examine the concept of context. Normally, "this" inside of a constructor function refers to the newly instantiated object. However, in the function we're passing to forEach, "this" would normally refer to "undefined" in strict mode. As a result, we had to pass a second argument to forEach to make sure our "this" was still referring to our instantiated object. One of the primary purposes of lexical arrow functions, besides cleaning up syntax to use fewer lines of code, is to also preserve context. That means that when you declare a function using lexical arrows, "this" inside the function will still be the same "this" as it was outside the function. As a result, we no longer have to pass in the optional "this" argument to forEach!
     Object.keys(rawDataObj).forEach(key => this[key] = rawDataObj[key]);
@@ -29,10 +29,12 @@ var app = app || {};
   Article.loadAll = articleData => {
     articleData.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)))
 
-  /* OLD forEach():
+    /* OLD forEach():
   articleData.forEach(articleObject => Article.all.push(new Article(articleObject)));
   */
 
+    let articleDataArray = articleData.map(articleObject => new Article(articleObject));
+    return articleDataArray;
   };
 
   Article.fetchAll = callback => {
@@ -44,11 +46,12 @@ var app = app || {};
   };
 
   Article.numWordsAll = () => {
-    const reducer = (acc,cur) => acc + cur;
-    return Article.all.map(x => {
-      console.log(x.body)
-      return x.body.split(' ').length;
-    }).reduce(reducer);
+    console.log(Article.all)
+    // const reducer = (acc,cur) => acc + cur;
+    let wordCountAll = Article.all.map(article => console.log(article))
+    // .reduce(reducer);
+    // console.log(wordCountAll);
+    return wordCountAll;
   }
 
   // (Article.numWordsAll = () => {
@@ -58,13 +61,13 @@ var app = app || {};
   //   });
   // })()
 
-  Article.allAuthors = () => {
-    return Article.all.map().reduce();
-  };
+  // Article.allAuthors = () => {
+  //   return Article.all.map().reduce();
+  // };
 
-  Article.numWordsByAuthor = () => {
-    return Article.allAuthors().map(author => {})
-  };
+  // Article.numWordsByAuthor = () => {
+  //   return Article.allAuthors().map(author => {})
+  // };
 
   Article.truncateTable = callback => {
     $.ajax({
