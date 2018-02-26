@@ -20,12 +20,6 @@ var app = app || {};
     return template(this);
   };
 
-  Article.prototype.toHtml2 = function() {
-    var template = Handlebars.compile($('#author-template').text());
-
-    return template(this);
-  };
-
   Article.loadAll = articleData => {
     articleData.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)))
 
