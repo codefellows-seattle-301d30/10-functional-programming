@@ -44,18 +44,20 @@ var app = app || {};
   // Chain together a .map() call and a .reduce() call to produce an array of unique author names. You will probably need to use the optional accumulator argument in your reduce call.
 
   Article.numWordsAll = () => {
-    // let counter = 0;
-
-    //count the spaces
-    //way to use length?? char count
-    //body is currently 1 big string. Make each word an element in an array, then reduce will count how many indexes there are.
     return Article.all.map(x => x.body.split(' ').length).reduce((accumulator, currentValue) => {
       return accumulator + currentValue;
     } ,0 )
   };
 
   Article.allAuthors = () => {
-    return Article.all.map().reduce();
+    return Article.all.map(x =>
+      x.author).reduce((accumulator, currentValue) => {
+      if (!accumulator.includes(currentValue)) {
+        accumulator.push(currentValue);
+      }
+      return accumulator;
+
+    }, []);
   };
 
   Article.numWordsByAuthor = () => {
