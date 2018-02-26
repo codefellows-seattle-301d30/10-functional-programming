@@ -3,6 +3,9 @@ var app = app || {};
 
 var articleView = {};
 
+(module => {
+
+
 articleView.populateFilters = () => {
   $('article').each(function() {
     if (!$(this).hasClass('template')) {
@@ -140,3 +143,5 @@ articleView.initAdminPage = () => {
   $('#blog-stats .articles').text(app.Article.all.length);
   $('#blog-stats .words').text(app.Article.numWordsAll());
 };
+
+})(app)
