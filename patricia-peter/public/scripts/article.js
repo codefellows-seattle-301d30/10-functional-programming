@@ -57,11 +57,20 @@ var app = app || {};
       }
       return accumulator;
 
-    }, []);
+    },[]);
   };
 
+  
+
   Article.numWordsByAuthor = () => {
-    return Article.allAuthors().map(author => {})
+    return Article.allAuthors().map(author => {
+      console.log('here');
+      let authorArticles = Article.all.filter(x => x.author);
+      authorArticles.map(x => x.body.split(' ').length).reduce((accumulator, currentValue) => {
+        console.log('reduce');
+        return accumulator + currentValue;
+      }, 0)
+    })
   };
 
   Article.truncateTable = callback => {

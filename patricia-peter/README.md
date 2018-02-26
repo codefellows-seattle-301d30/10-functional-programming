@@ -1,22 +1,25 @@
 # Project Name
 
-**Author**: Your Name Goes Here
-**Version**: 1.0.0 (increment the patch/fix version number up if you make more commits past your first submission)
+**Author**: Peter Kim and Patricia Raftery
+**Version**: 1.0.0
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for a Code Fellows 301 class. (i.e. What's your problem domain?) -->
+This is a blog of 250 articles that populate from the server to the view. A new article can be created and posted, and will be sent to the database.
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+Fork and clone starter code from GitHub. Familiarize yourself with the starter code.
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+This site uses html, css, handlebars, markdown, and javascript. 250 articles are populated to the view from the server using SQL.
 
 ## Change Log
-<!-- Use this are to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with GET and POST routes for the book resource.
+02-26-2018 0900 - Forked and cloned starter code
+02-26-2018 0930 - wrapped js in IIFE functions
+02-26-2018 1030 - wrote code for total word count
+02-26-2018 1200 - wrote code for all authors array
+02-26-2018 1300 - wrote README
 
 ## Credits and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+
 -->
