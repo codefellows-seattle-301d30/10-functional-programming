@@ -7,9 +7,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const app = express();
-//TODO: CHANGE conString between drivers to PC version
-// const conString = 'postgres://USER:PASSWORD@HOST:PORT/DBNAME';
-const conString = 'postgres://localhost:5432/kilovolt';
+const conString = 'postgres://postgres:1234@HOST:3000/kilovolt';
 const client = new pg.Client(conString);
 client.connect();
 client.on('error', err => {
