@@ -1,16 +1,25 @@
 {
-  "name": "mvc-blog",
+  "name": "sooz-jose-lab10",
   "version": "1.0.0",
-  "description": "As we now complete our MVC conversation, we can refactor our app to use good MVC separation of concerns.",
-  "main": "server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Code Fellows",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FavoredFortune/10-functional-programming.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FavoredFortune/10-functional-programming/issues"
+  },
+  "homepage": "https://github.com/FavoredFortune/10-functional-programming#readme",
   "dependencies": {
-    "express": "^4.13.3",
-    "body-parser": "^1.15.2",
-    "pg": "^6.1.2"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "fs": "0.0.1-security",
+    "pg": "^7.4.1"
   }
 }
