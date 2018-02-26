@@ -20,15 +20,16 @@ var app = app || {};
     
     return template(this);
   };
-  
+
   Article.loadAll = articleData => {
     articleData.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)))
-    
+
     /* OLD forEach():
   articleData.forEach(articleObject => Article.all.push(new Article(articleObject)));
   */
 
-    articleData.map(articleObject => new Article(articleObject))
+    Article.all = articleData.map(x => (new Article(x)));
+  // articleData.map(articleObject => new Article(articleObject))
 
   };
 
@@ -41,17 +42,27 @@ var app = app || {};
   };
 
   Article.numWordsAll = () => {
-    return Article.all.map(element => element.body.split(' ')).reduce((accumulator,currentValue) => {
-      return accumulator + currentValue;
+    return Article.all.map(article => article.body).reduce((sum,totalWords) => {
+      return totalWords.split(' ').length + sum;
     }, 0)
   };
 
   Article.allAuthors = () => {
-    return Article.all.map().reduce();
+    return Article.all.map(article => article.author).reduce((allAuthors, authorName) => {
+      if(!allAuthors.includes(authorName)){
+        allAuthors.push(authorName);
+      }
+      return allAuthors;
+    }, [])
   };
 
   Article.numWordsByAuthor = () => {
-    return Article.allAuthors().map(author => {})
+    return Article.allAuthors().map(author => ({
+      author: author,
+      totalWords:  Article.all.filter(article => article.author === author)
+        .map(article => article.body)
+        .reduce((sum, totalWords) => totalWords.split(' ').length + sum, 0)
+    }))
   };
 
   Article.truncateTable = callback => {
