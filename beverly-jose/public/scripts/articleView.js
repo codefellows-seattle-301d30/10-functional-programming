@@ -4,7 +4,8 @@ var app = app || {};
 
 (module => {
   var articleView = {};
-
+  module.articleView = articleView;
+  
   articleView.populateFilters = () => {
     $('article').each(function() {
       if (!$(this).hasClass('template')) {
