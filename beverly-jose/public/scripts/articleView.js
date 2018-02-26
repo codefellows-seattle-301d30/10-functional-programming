@@ -4,8 +4,7 @@ var app = app || {};
 
 (module => {
   var articleView = {};
-  module.articleView = articleView;
-  
+
   articleView.populateFilters = () => {
     $('article').each(function() {
       if (!$(this).hasClass('template')) {
@@ -143,5 +142,5 @@ var app = app || {};
     $('#blog-stats .articles').text(app.Article.all.length);
     $('#blog-stats .words').text(app.Article.numWordsAll());
   };
-
+  module.articleView = articleView;
 })(app)

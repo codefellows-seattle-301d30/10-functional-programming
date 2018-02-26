@@ -8,7 +8,7 @@ var app = app || {};
     Object.keys(rawDataObj).forEach(key => this[key] = rawDataObj[key]);
   }
 
-  module.Article.all = Article.all = [];
+  Article.all = [];
 
   Article.prototype.toHtml = function() {
     var template = Handlebars.compile($('#article-template').text());
@@ -26,10 +26,10 @@ var app = app || {};
     /* OLD forEach():
     articleData.forEach(articleObject => Article.all.push(new Article(articleObject)));
     */
-
+    Article.all = articleData.map(articleObject => new Article(articleObject));
   };
 
-  module.Article.fetchAll = Article.fetchAll = callback => {
+  Article.fetchAll = Article.fetchAll = callback => {
     $.get('/articles')
       .then(results => {
         Article.loadAll(results);
@@ -92,5 +92,5 @@ var app = app || {};
       .then(console.log)
       .then(callback);
   };
-
+  module.Article = Article;
 })(app)
