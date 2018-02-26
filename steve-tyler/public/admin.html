@@ -10,12 +10,28 @@
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/modules.css">
     <link rel="icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/18607604?v=3&s=200">
+
+    <script id="author-stats-template" type="text/x-handlebars-template">
+      <!-- <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
+        <header>
+          <h1>{{title}}</h1>
+          <div class="byline">
+            By <address><a href="{{authorUrl}}">{{author}}</a></address>
+            {{publishStatus}}
+          </div>
+        </header>
+        <section class="article-body">{{{body}}}</section>
+        <a href="#" class="read-on">Read on &rarr;</a>
+      </article> -->
+      <li>{{author}}: {{wordsCountByAuthor}} words written</li>
+    </script>
+
   </head>
   <body>
     <header class="site-header clearfix">
       <section class="heading-group-h1 pull-left">
         <h1>
-          Kilovolt Blog!
+          Kilovolt Blog!!!
         </h1>
         <h2>The shocking power of static pages</h2>
       </section>
@@ -48,7 +64,7 @@
     <script src="scripts/article.js"></script>
     <script src="scripts/articleView.js"></script>
     <script>
-      Article.fetchAll();
+      app.Article.fetchAll(app.articleView.initAdminPage);
     </script>
   </body>
 </html>
