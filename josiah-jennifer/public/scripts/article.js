@@ -19,6 +19,12 @@ var app = app || {};
     return template(this);
   };
 
+  // Article.prototype.numWordsByAuthor = function() {
+  //   var template = Handlebars.compile($('#admin-template').text());
+  //   this.adminAuthor = this.author;
+  //   return template(this);
+  // };
+
   Article.loadAll = articleData => {
     articleData.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)))
     articleData.map(articleObject => Article.all.push(new Article(articleObject)));
