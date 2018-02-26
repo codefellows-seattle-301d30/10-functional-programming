@@ -4,14 +4,7 @@ var app = app || {};
 var articleView = {};
 
 (function (module){
-  let jeremy = 'Jeremy has no dog';
-  let kevin = 'Apollo';
-  // console.log(jeremy,kevin);
-  
-  module.jeremy = jeremy;
-})(app);
-
-(articleView.populateFilters (module){
+articleView.populateFilters = () => {
   $('article').each(function() {
     if (!$(this).hasClass('template')) {
       var val = $(this).find('address a').text();
@@ -26,9 +19,8 @@ var articleView = {};
         $('#category-filter').append(optionTag);
       }
     }
-    module.$('article').each 
   });
-}(app);
+};
 
 articleView.handleAuthorFilter = () => {
   $('#author-filter').on('change', function() {
@@ -153,3 +145,4 @@ articleView.initAdminPage = () => {
   $('#blog-stats .articles').text(app.Article.all.length);
   $('#blog-stats .words').text(app.Article.numWordsAll());
 };
+})(app);
