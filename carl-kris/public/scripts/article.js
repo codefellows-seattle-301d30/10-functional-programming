@@ -32,12 +32,27 @@ var app = app || {};
       })
   };
 
+  // Article.numWordsAll = () => {
+  //   return Article.all.map(obj => {
+  //     obj.body.split(' ').length;
+  //   })
+  // };
+
   Article.numWordsAll = () => {
-    return Article.all.map().reduce()
-  };
+    return Article.all.map(obj => {
+      return obj.body.split(' ').length
+    }).reduce((accumulator, currentValue) => accumulator += currentValue, 0)
+  }
 
   Article.allAuthors = () => {
-    return Article.all.map().reduce();
+    return Article.all.map(obj => {
+      return obj.author;
+    }).reduce((accumulator, currentValue) => {
+      if (!accumulator.includes(currentValue)) {
+        accumulator.push(currentValue);
+      }
+      return accumulator;
+    }, []);
   };
 
   Article.numWordsByAuthor = () => {
