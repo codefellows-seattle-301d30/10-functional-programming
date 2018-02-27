@@ -2,7 +2,6 @@
 var app = app || {};
 
 (module => {
-
   function Article(rawDataObj) {
     // REVIEW: In Lab 8, we explored a lot of new functionality going on here. Let's re-examine the concept of context. Normally, "this" inside of a constructor function refers to the newly instantiated object. However, in the function we're passing to forEach, "this" would normally refer to "undefined" in strict mode. As a result, we had to pass a second argument to forEach to make sure our "this" was still referring to our instantiated object. One of the primary purposes of lexical arrow functions, besides cleaning up syntax to use fewer lines of code, is to also preserve context. That means that when you declare a function using lexical arrows, "this" inside the function will still be the same "this" as it was outside the function. As a result, we no longer have to pass in the optional "this" argument to forEach!
     Object.keys(rawDataObj).forEach(key => this[key] = rawDataObj[key]);
@@ -42,19 +41,25 @@ var app = app || {};
   };
 
   Article.allAuthors = () => {
-    let arrayTest = [];
-    let authors = Article.all.map(x => x.author);
+    let array = [];
+    let authors = Article.all.map(each => each.author);
     for (let i in authors) {
-      if (!arrayTest.includes(authors[i])) {
-        arrayTest.push(authors[i]);
+      if (!array.includes(authors[i])) {
+        array.push(authors[i]);
       }
     }
-    return arrayTest;
+    return array;
   }
 
-
   Article.numWordsByAuthor = () => {
-    return Article.allAuthors().map(author => {})
+    return Article.allAuthors().map(author => {
+      return {
+        name: author,
+        numWords: Article.all.filter(a => a.author === author)
+          .map(a => a.body.match(/\b\w+/g).length)
+          .reduce((a, b) => a + b)
+      }
+    })
   };
 
   Article.truncateTable = callback => {
