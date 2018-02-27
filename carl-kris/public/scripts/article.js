@@ -32,12 +32,6 @@ var app = app || {};
       })
   };
 
-  // Article.numWordsAll = () => {
-  //   return Article.all.map(obj => {
-  //     obj.body.split(' ').length;
-  //   })
-  // };
-
   Article.numWordsAll = () => {
     return Article.all.map(obj => {
       return obj.body.split(' ').length
@@ -56,7 +50,16 @@ var app = app || {};
   };
 
   Article.numWordsByAuthor = () => {
-    return Article.allAuthors().map(author => {})
+    return Article.allAuthors().map(author => {
+      return {
+        author: author,
+        wordCount: Article.all.filter(obj => obj.author === author)
+          .map(obj => {
+            return obj.body.split(' ').length;
+          })
+          .reduce((accumulator, currentValue) => accumulator += currentValue, 0)
+      }
+    })
   };
 
   Article.truncateTable = callback => {

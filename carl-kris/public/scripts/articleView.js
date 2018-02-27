@@ -89,7 +89,7 @@ var app = app || {};
     var article;
     $('#articles').empty();
 
-    article = new Article({
+    article = new app.Article({
       title: $('#article-title').val(),
       author: $('#article-author').val(),
       authorUrl: $('#article-author-url').val(),
@@ -98,13 +98,13 @@ var app = app || {};
       publishedOn: new Date().toISOString()
     });
 
-    $('#articles').append(article.app.toHtml());
+    $('#articles').append(article.toHtml());
     $('pre code').each((i, block) => hljs.highlightBlock(block));
   };
 
   articleView.submit = event => {
     event.preventDefault();
-    let article = new Article({
+    let article = new app.Article({
       title: $('#article-title').val(),
       author: $('#article-author').val(),
       authorUrl: $('#article-author-url').val(),
@@ -139,6 +139,13 @@ var app = app || {};
     $('#blog-stats .articles').text(app.Article.all.length);
     $('#blog-stats .words').text(app.Article.numWordsAll());
   };
+
+  articleView.initAdminPage = () => {
+    var template = Handlebars.compile($('#stats-template').text());
+    app.Article.numWordsByAuthor().forEach(words => $('.author-stats').append(template(words)));
+    $('.articles').text(app.Article.all.length);
+    $('.words').text(app.Article.numWordsAll());
+  }
 
   module.articleView = articleView;
 })(app);
