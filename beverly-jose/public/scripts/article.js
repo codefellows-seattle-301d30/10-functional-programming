@@ -42,7 +42,7 @@ var app = app || {};
 
   Article.allAuthors = () => {
     let array = [];
-    let authors = Article.all.map(x => x.author);
+    let authors = Article.all.map(each => each.author);
     for (let i in authors) {
       if (!array.includes(authors[i])) {
         array.push(authors[i]);
