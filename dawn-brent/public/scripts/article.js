@@ -71,16 +71,6 @@ var app = app || {};
 
   }
 
-  // Article.prototype.authorData = function(authName) {
-  //   ;
-  //   let authdata = {
-  //     authorName: authName,
-  //     numArticles:
-  //   };
-    
-  //   return ;
-  // };
-
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',
