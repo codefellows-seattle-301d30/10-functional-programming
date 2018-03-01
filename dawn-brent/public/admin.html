@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="styles/modules.css">
     <link rel="icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/18607604?v=3&s=200">
     <script id="author-data-template" type="text/x-handlebars-template">
-      <tr>
+      <tr class="data">
         <td>{{authorName}}</td>
         <td>{{numArticles}}</td>
         <td>{{wordCount}}</td>
@@ -41,9 +41,14 @@
         <dt>Total articles:</dt> <dd class="articles"></dd>
         <dt>Total words:</dt> <dd class="words"></dd>
         <h2>Author Stats</h2>
-        <p><em>Details on who is writing, and how much writing they are doing...</em></p>
-        <ul class="author-stats">
-        </ul>
+        <table>
+          <thead>
+            <td>name</td>
+            <td>articles</td>
+            <td>words</td>
+          </thead>
+          <tbody class="author-stats"></tbody>
+        </table>
       </section>
     </main>
     <footer>
