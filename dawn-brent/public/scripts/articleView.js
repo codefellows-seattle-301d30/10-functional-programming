@@ -2,8 +2,8 @@
 var app = app || {};
 
 (function (module) {
-  module.articleView = {};
-  module.articleView.populateFilters = () => {
+  let articleView = {};
+  articleView.populateFilters = () => {
     $('article').each(function() {
       if (!$(this).hasClass('template')) {
         var val = $(this).find('address a').text();
@@ -21,7 +21,7 @@ var app = app || {};
     });
   };
 
-  module.articleView.handleAuthorFilter = () => {
+  articleView.handleAuthorFilter = () => {
     $('#author-filter').on('change', function() {
       if ($(this).val()) {
         $('article').hide();
@@ -34,7 +34,7 @@ var app = app || {};
     });
   };
 
-  module.articleView.handleCategoryFilter = () => {
+  articleView.handleCategoryFilter = () => {
     $('#category-filter').on('change', function() {
       if ($(this).val()) {
         $('article').hide();
@@ -47,7 +47,7 @@ var app = app || {};
     });
   };
 
-  module.articleView.handleMainNav = () => {
+  articleView.handleMainNav = () => {
     $('.main-nav').on('click', '.tab', function() {
       $('.tab-content').hide();
       $(`#${$(this).data('content')}`).fadeIn();
@@ -56,7 +56,7 @@ var app = app || {};
     $('.main-nav .tab:first').click();
   };
 
-  module.articleView.setTeasers = () => {
+  articleView.setTeasers = () => {
     $('.article-body *:nth-of-type(n+2)').hide();
     $('article').on('click', 'a.read-on', function(e) {
       e.preventDefault();
@@ -73,18 +73,18 @@ var app = app || {};
     });
   };
 
-  module.articleView.initNewArticlePage = () => {
+  articleView.initNewArticlePage = () => {
     $('.tab-content').show();
     $('#export-field').hide();
     $('#article-json').on('focus', function(){
       this.select();
     });
 
-    $('#new-form').on('change', 'input, textarea', module.articleView.create);
-    $('#new-form').on('submit', module.articleView.submit);
+    $('#new-form').on('change', 'input, textarea', articleView.create);
+    $('#new-form').on('submit', articleView.submit);
   };
 
-  module.articleView.create = () => {
+  articleView.create = () => {
     var article;
     $('#articles').empty();
 
@@ -101,7 +101,7 @@ var app = app || {};
     $('pre code').each((i, block) => hljs.highlightBlock(block));
   };
 
-  module.articleView.submit = event => {
+  articleView.submit = event => {
     event.preventDefault();
     let article = new Article({
       title: $('#article-title').val(),
@@ -118,17 +118,17 @@ var app = app || {};
     window.location = '../';
   }
 
-  module.articleView.initIndexPage = () => {
+  articleView.initIndexPage = () => {
     app.Article.all.forEach(a => $('#articles').append(a.toHtml()));
-    module.articleView.populateFilters();
-    module.articleView.handleCategoryFilter();
-    module.articleView.handleAuthorFilter();
-    module.articleView.handleMainNav();
-    module.articleView.setTeasers();
+    articleView.populateFilters();
+    articleView.handleCategoryFilter();
+    articleView.handleAuthorFilter();
+    articleView.handleMainNav();
+    articleView.setTeasers();
     $('pre code').each((i, block) => hljs.highlightBlock(block));
   };
 
-  module.articleView.initAdminPage = () => {
+  articleView.initAdminPage = () => {
     
     // REVIEW: We use .forEach() here because we are relying on the side-effects of the callback function: appending to the DOM. The callback is not required to return anything.
     app.Article.numWordsByAuthor().forEach(stat => $('.author-stats').append(template(stat)));
@@ -137,4 +137,5 @@ var app = app || {};
     $('#blog-stats .articles').text(app.Article.all.length);
     $('#blog-stats .words').text(app.Article.numWordsAll());
   };
+  module.articleView = articleView;
 })(app);

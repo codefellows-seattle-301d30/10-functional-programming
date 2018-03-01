@@ -21,12 +21,7 @@ var app = app || {};
 
   Article.loadAll = articleData => {
     articleData.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
-    // articleData.map(articleObject => Article.all.push(new Article(articleObject)));
     Article.all = articleData.map(articleObject => new Article(articleObject));
-    /* OLD forEach():
-    articleData.forEach(articleObject => Article.all.push(new Article(articleObject)));
-    */
-
   };
 
   Article.fetchAll = callback => {
@@ -54,23 +49,26 @@ var app = app || {};
 
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
-      let authorData = {
+      let authArts = Article.all.filter(x => x.author===author)
+      return {
         authorName: author,
-        numArticles: Article.all.filter(x => x.author===author).map(articleThing => articleThing.body.split(" ")).reduce((wordCount, wordList) => {
+        numArticles: authArts.length,
+        wordCount: authArts.map(articleThing => articleThing.body.split(" ")).reduce((wordCount, wordList) => {
           return wordCount += wordList.length;
         }, 0)
-      }
-
-      return authorData;
+      };
     })
   };
 
-  Article.initAuthData = function () {
-    let dataArr = this.numWordsByAuthor();
+  Article.initData = function () {
+    let dataArr = app.Article.numWordsByAuthor();
     dataArr.forEach (x => {
       let template = Handlebars.compile($('#author-data-template').text())
       $('.author-stats').append(template(x))
     })
+    $('#blog-stats .words').text(app.Article.numWordsAll().toString())
+    $('#blog-stats .articles').text(app.Article.all.length.toString())
+
   }
 
   // Article.prototype.authorData = function(authName) {
