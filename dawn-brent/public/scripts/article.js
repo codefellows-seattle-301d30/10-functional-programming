@@ -60,17 +60,6 @@ var app = app || {};
     })
   };
 
-  Article.initData = function () {
-    let dataArr = app.Article.numWordsByAuthor();
-    dataArr.forEach (x => {
-      let template = Handlebars.compile($('#author-data-template').text())
-      $('.author-stats').append(template(x))
-    })
-    $('#blog-stats .words').text(app.Article.numWordsAll().toString())
-    $('#blog-stats .articles').text(app.Article.all.length.toString())
-
-  }
-
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',
