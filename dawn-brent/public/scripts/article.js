@@ -9,12 +9,6 @@ var app = app || {};
 
   Article.all = [];
 
-  Article.prototype.authorData = function() {
-    var template = Handlebars.compile($('#author-data-template').text());
-    let data = {};
-    return template(data);
-  };
-
   Article.prototype.toHtml = function() {
     var template = Handlebars.compile($('#article-template').text());
 
@@ -61,14 +55,33 @@ var app = app || {};
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       let authorData = {
-        name: author,
-        words: Article.all.filter(x => x.author===author).map(articleThing => articleThing.body.split(" ")).reduce((wordCount, wordList) => {
+        authorName: author,
+        numArticles: Article.all.filter(x => x.author===author).map(articleThing => articleThing.body.split(" ")).reduce((wordCount, wordList) => {
           return wordCount += wordList.length;
         }, 0)
       }
+
       return authorData;
     })
   };
+
+  Article.initAuthData = function () {
+    let dataArr = this.numWordsByAuthor();
+    dataArr.forEach (x => {
+      let template = Handlebars.compile($('#author-data-template').text())
+      $('.author-stats').append(template(x))
+    })
+  }
+
+  // Article.prototype.authorData = function(authName) {
+  //   ;
+  //   let authdata = {
+  //     authorName: authName,
+  //     numArticles:
+  //   };
+    
+  //   return ;
+  // };
 
   Article.truncateTable = callback => {
     $.ajax({
