@@ -21,6 +21,7 @@ var app = app || {};
   Article.loadAll = articleData => {
     articleData.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)))
 
+    articleData.map(articleObject => Article.all(new Article(articleObject)));
     /* OLD forEach():
     articleData.forEach(articleObject => Article.all.push(new Article(articleObject)));
     */
@@ -36,7 +37,7 @@ var app = app || {};
   };
 
   Article.numWordsAll = () => {
-    return Article.all.map().reduce()
+    return Article.all.map(article => article.body.match(/\b\w+/g).length).reduce((a, b) => a + b)
   };
 
   Article.allAuthors = () => {
