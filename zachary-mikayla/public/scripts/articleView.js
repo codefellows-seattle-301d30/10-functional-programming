@@ -1,15 +1,15 @@
 'use strict';
-var app = app || {};
+let app = app || {};
 
 (function(module) {
 
-  var articleView = {};
+  let articleView = {};
 
   articleView.populateFilters = () => {
     $('article').each(function() {
       if (!$(this).hasClass('template')) {
-        var val = $(this).find('address a').text();
-        var optionTag = `<option value="${val}">${val}</option>`;
+        let val = $(this).find('address a').text();
+        let optionTag = `<option value="${val}">${val}</option>`;
         if ($(`#author-filter option[value="${val}"]`).length === 0) {
           $('#author-filter').append(optionTag);
         }
@@ -88,7 +88,7 @@ var app = app || {};
   };
 
   articleView.create = () => {
-    var article;
+    let article;
     $('#articles').empty();
 
     article = new Article({
